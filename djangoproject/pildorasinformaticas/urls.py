@@ -9,4 +9,6 @@ urlpatterns = [
     path('', views.HelloWorld),
     path('fecha/',views.getDate),
     path('edad/<int:age>/<int:year>',views.calculAge),
+    path('hijouno/',views.hijo_uno),
+    path('hijodos/',views.hijo_dos)
 ]

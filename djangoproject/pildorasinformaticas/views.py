@@ -1,10 +1,31 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import datetime
+from django.template import loader
+
+class Person():
+    def __init__(self,first_name,last_name):
+        self.first_name = first_name
+        self.last_name = last_name
+        
 
 # Create your views here.
 def HelloWorld(request):
-    return HttpResponse("Hello world")
+    juan = Person("Juan","Perez")
+    return render(request,"pildorasinformaticas/template.html",{
+        "persona": juan,
+        "themes": ["templates","Models","Forms","views","Deploy"]
+    })
+    
+    #otra forma de carga::
+    # juan = Person("Juan","Perez")
+    # extern_doct = loader.get_template('pildorasinformaticas/template.html')
+    # contex = {
+    #     "persona": juan,
+    #     "themes": ["templates","Models","Forms","views","Deploy"]
+    # }
+    # documento =  extern_doct.render(contex)
+    # return HttpResponse(documento)
 
 
 def getDate(request):
@@ -24,3 +45,19 @@ def calculAge(request,age,year):
     <h2>En el año %s tendrás %s años </h2>
     """%(year,future_age)
     return HttpResponse(document)
+
+
+def hijo_uno(request):
+    current_date = datetime.datetime.now()
+    
+    return render(request,"pildorasinformaticas/hijo1.html",{
+        "date":current_date
+    })
+    
+
+def hijo_dos(request):
+    current_date = datetime.datetime.now()
+    
+    return render(request,"pildorasinformaticas/hijo2.html",{
+        "date":current_date
+    })
